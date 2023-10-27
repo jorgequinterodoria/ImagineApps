@@ -83,12 +83,9 @@ class Program
                         string checkAmount = line.Substring(531, 14).Trim();
                         string payorId = line.Substring(545, 10).Trim();
                         string amountString = line.Substring(590, 120).Trim();
-
-                        // Consulta la base de datos para obtener el nombre del banco
                         string bankName = GetBankInfo(connectionString, Convert.ToInt16(bankId)).Bank_Name;
                         string bankAddress1 = GetBankInfo(connectionString, Convert.ToInt16(bankId)).Address_1;
                         string bankAddress2 = GetBankInfo(connectionString, Convert.ToInt16(bankId)).Address_2;
-
                         string outputLine = $"H~{checkNumber}~{bankName}~{bankAddress1}~{bankAddress2}~{accountId}~{formattedCheckDate}~{currencyId}~{payeeName1}~{payeeName2}~{address1}~{address2}~{address3}~{address4}~{address5}~{checkAmount}~{payorId}~{amountString}";
                         writer.WriteLine(outputLine);
                     }
@@ -114,9 +111,6 @@ class Program
                         {
                             benefitDescription = line.Substring(182, 22).Trim();
                         }
-                        
-                        
-
                         string outputLine = $"D~{checkNumber}~{bankId}~{bankAccountNo}~{formattedCheckDate}~{invoiceNumber}~{formattedInvoiceDate}~{voucherNumber}~{formattedVoucherDate}~{grossAmount}~{discountAmount}~{netAmount}~{concept}~{benefitDescription}";
                         writer.WriteLine(outputLine);
                     }
